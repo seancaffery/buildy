@@ -4,6 +4,7 @@ require 'sinatra/activerecord'
 require 'models/revision'
 require 'models/build'
 require 'models/build_result'
+require 'models/revision_build'
 
 configure :development do
   set :database, 'sqlite://dev.sqlite3'
