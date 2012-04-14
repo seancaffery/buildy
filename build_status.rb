@@ -15,11 +15,12 @@ class BuildStatus #< Sinatra::Base
   post '/update_build' do
     build_info = JSON.parse(params[:payload])
 
-    revision = Revision.find_or_create_by_revision_id(build_info['revision_id'])
+    branch = Branch.find_by_name(build_info['branch'])
+    revision = branch.revisions.find_or_create_by_revision_id(build_info['revision_id'])
     build = Build.find_by_name(build_info['build_name'])
-    revision.builds << build if revision.new_record?
 
-    revision.build_results.build(:build => build, :result => build_info['revision_id'])
-    revision.save!
+    build_result = revision.build_results.find_or_create_by_revision_id_and_build_id(revision.id, build.id)
+    build_result.result = build_info['result']
+    build_result.save!
   end
 end

@@ -1,3 +1,3 @@
 class Build < ActiveRecord::Base
-  has_many :revisions
+  belongs_to :branch
 end

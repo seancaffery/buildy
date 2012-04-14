@@ -5,6 +5,7 @@ require 'models/revision'
 require 'models/build'
 require 'models/build_result'
 require 'models/revision_build'
+require 'models/branch'
 
 configure :development do
   set :database, 'sqlite://dev.sqlite3'
