@@ -22,7 +22,7 @@ class BuildStatus #< Sinatra::Base
   post '/update_build' do
     build_info = JSON.parse(params[:payload])
 
-    branch = Branch.find_by_name(build_info['branch'])
+    branch = Branch.find_by_name(build_info['branch'].gsub('/', '_'))
     revision = branch.revisions.find_or_create_by_revision_id(build_info['revision_id'])
     build = Build.find_by_name(build_info['build_name'])
 
