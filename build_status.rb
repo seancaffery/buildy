@@ -13,10 +13,14 @@ class BuildStatus #< Sinatra::Base
     branch = Branch.find_by_name params[:branch]
     revisions = []
     branch.revisions.each do |rev|
+      next unless rev.build_results.count == branch.builds.count
       build_results = rev.build_results.map(&:result)
       revisions <<  rev unless build_results.include? 'failed'
     end
-    revisions.last.revision_id
+
+    if revisions.last
+      revisions.last.revision_id
+    end
   end
 
   post '/update_build' do
