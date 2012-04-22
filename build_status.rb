@@ -4,7 +4,7 @@ require 'json'
 
 require 'models'
 
-class BuildStatus #< Sinatra::Base
+class BuildStatus < Sinatra::Base
   get '/' do
     @revisions = Revision.all
   end
