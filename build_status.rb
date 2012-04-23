@@ -12,7 +12,7 @@ class BuildStatus < Sinatra::Base
   get '/:branch/last_good_revision' do
     branch = Branch.find_by_name params[:branch]
     if branch
-     branch.last_good_revision 
+     branch.last_good_revision(branch)
     end
   end
 

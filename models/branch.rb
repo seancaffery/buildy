@@ -2,7 +2,7 @@ class Branch < ActiveRecord::Base
   has_many :builds
   has_many :revisions, :order => :created_at
 
-  def last_good_revision
+  def last_good_revision(branch)
     revs = []
     revisions.each do |rev|
       next unless rev.build_results.count == branch.builds.count
