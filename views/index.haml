@@ -1,0 +1,32 @@
+!!!
+
+%html
+  %head
+    %title
+      Buildy
+
+  %body
+    #container
+      #header
+        %h1 hai
+      #page
+        #content
+          %p hai
+
+          - @branches.each do |branch|
+            .branch
+              = branch.name
+              #revisions
+                - branch.revisions.each do |rev|
+                  .revision
+                    = rev.revision_id
+                    #build_results
+                      - branch.builds.each do |build|
+                        .result
+                          = build.name
+                          - res = rev.build_results.find_by_build_id(build.id)
+                          = res.result if res
+                          - unless res
+                            Build information not received
+
+      #footer

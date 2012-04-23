@@ -1,12 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
+require 'haml'
 
 require 'models'
 
 class BuildStatus < Sinatra::Base
   get '/' do
     @revisions = Revision.all
+    @branches = Branch.all
+
+    haml :index
   end
 
   get '/:branch/last_good_revision' do
