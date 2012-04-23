@@ -6,8 +6,7 @@ class Branch < ActiveRecord::Base
     revs = []
     revisions.each do |rev|
       next unless rev.build_results.count == builds.count
-      build_results = rev.build_results.map(&:result)
-      revs <<  rev unless build_results.include? 'failed'
+       revs << rev if rev.good?
     end
 
     if revs.last
