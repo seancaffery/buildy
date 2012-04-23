@@ -11,15 +11,8 @@ class BuildStatus < Sinatra::Base
 
   get '/:branch/last_good_revision' do
     branch = Branch.find_by_name params[:branch]
-    revisions = []
-    branch.revisions.each do |rev|
-      next unless rev.build_results.count == branch.builds.count
-      build_results = rev.build_results.map(&:result)
-      revisions <<  rev unless build_results.include? 'failed'
-    end
-
-    if revisions.last
-      revisions.last.revision_id
+    if branch
+     branch.last_good_revision 
     end
   end
 
