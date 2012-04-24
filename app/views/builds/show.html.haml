@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @build.name
+%p
+  %b Branch:
+  = @build.branch_id
+
+= link_to 'Edit', edit_build_path(@build)
+\|
+= link_to 'Back', builds_path

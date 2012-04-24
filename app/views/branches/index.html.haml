@@ -1,0 +1,19 @@
+%h1 Listing branches
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @branches.each do |branch|
+    %tr
+      %td= branch.name
+      %td= link_to 'Show', branch
+      %td= link_to 'Edit', edit_branch_path(branch)
+      %td= link_to 'Destroy', branch, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Branch', new_branch_path
