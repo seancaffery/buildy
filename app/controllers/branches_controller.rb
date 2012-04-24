@@ -80,4 +80,9 @@ class BranchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def last_good_revision
+    @branch = Branch.find params[:id]
+    @branch.last_good_revision
+  end
 end
