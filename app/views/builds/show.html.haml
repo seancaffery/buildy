@@ -5,8 +5,8 @@
   = @build.name
 %p
   %b Branch:
-  = @build.branch_id
+  = @build.branch.name
 
-= link_to 'Edit', edit_build_path(@build)
+= link_to 'Edit', edit_branch_build_path(@build)
 \|
-= link_to 'Back', builds_path
+= link_to 'Back', branch_builds_path

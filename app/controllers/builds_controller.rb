@@ -38,16 +38,19 @@ class BuildsController < ApplicationController
   # GET /builds/1/edit
   def edit
     @build = Build.find(params[:id])
+    @branch = Branch.find(params[:branch_id])
   end
 
   # POST /builds
   # POST /builds.json
   def create
     @build = Build.new(params[:build])
+    branch = Branch.find(params[:branch_id])
+    @build.branch = branch
 
     respond_to do |format|
       if @build.save
-        format.html { redirect_to @build, :notice => 'Build was successfully created.' }
+        format.html { redirect_to [branch, @build], :notice => 'Build was successfully created.' }
         format.json { render :json => @build, :status => :created, :location => @build }
       else
         format.html { render :action => "new" }
@@ -60,6 +63,7 @@ class BuildsController < ApplicationController
   # PUT /builds/1.json
   def update
     @build = Build.find(params[:id])
+    @build.branch = Branch.find(params[:branch_id])
 
     respond_to do |format|
       if @build.update_attributes(params[:build])
@@ -79,7 +83,7 @@ class BuildsController < ApplicationController
     @build.destroy
 
     respond_to do |format|
-      format.html { redirect_to builds_url }
+      format.html { redirect_to branch_builds_url }
       format.json { head :no_content }
     end
   end
