@@ -1,0 +1,29 @@
+
+- @branches.each do |branch|
+  .branch
+    = branch.name
+    .last_good
+      Last good revision:
+      - last_good = branch.last_good_revision
+      - if last_good
+        = last_good
+      - else
+        No good revision found.
+    .revisions
+      - branch.revisions.each do |rev|
+        .revision
+          - if rev.good?
+            %div{:class => %{good}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
+              = rev.revision_id
+          - else
+            %div{:class => %{bad}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
+              = rev.revision_id
+          %div{:class => %w{build_results collapse}, :id => rev.id}
+            - branch.builds.each do |build|
+              .result
+                = build.name
+                - res = rev.build_results.find_by_build_id(build.id)
+                = res.result if res
+                - unless res
+                  Build information not received
+
