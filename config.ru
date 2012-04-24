@@ -1,3 +1,4 @@
-require './build_status'
+# This file is used by Rack-based servers to start the application.
 
-run BuildStatus
+require ::File.expand_path('../config/environment',  __FILE__)
+run BuildStatus::Application

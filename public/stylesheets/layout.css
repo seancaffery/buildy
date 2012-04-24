@@ -1,0 +1,5 @@
+.container{width:970px;margin:auto;}
+.branch{margin-bottom:20px;}
+.revision,.result{margin-bottom:5px;}
+.good{color:green;}
+.bad{color:red;}
