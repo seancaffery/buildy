@@ -1,12 +1,10 @@
 class CreateRevisions < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :revisions do |t|
-      t.string :revision_id
+      t.string :sha
       t.integer :branch_id
-      t.datetime :created_at
-    end
-  end
 
-  def self.down
+      t.timestamps
+    end
   end
 end

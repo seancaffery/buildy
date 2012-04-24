@@ -1,10 +1,9 @@
 class CreateBranches < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :branches do |t|
       t.string :name
-    end
-  end
 
-  def self.down
+      t.timestamps
+    end
   end
 end

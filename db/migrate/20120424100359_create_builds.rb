@@ -1,11 +1,10 @@
 class CreateBuilds < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :builds do |t|
       t.string :name
       t.integer :branch_id
-    end
-  end
 
-  def self.down
+      t.timestamps
+    end
   end
 end

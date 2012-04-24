@@ -2,6 +2,8 @@ class Branch < ActiveRecord::Base
   has_many :builds
   has_many :revisions, :order => :created_at
 
+  attr_accessible :name
+
   def last_good_revision
     revs = []
     revisions.each do |rev|

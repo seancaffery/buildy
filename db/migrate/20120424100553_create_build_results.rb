@@ -1,12 +1,11 @@
 class CreateBuildResults < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :build_results do |t|
       t.integer :build_id
       t.integer :revision_id
       t.string :result
-    end
-  end
 
-  def self.down
+      t.timestamps
+    end
   end
 end

@@ -2,6 +2,8 @@ class Revision < ActiveRecord::Base
   has_many :build_results
   belongs_to :branch
 
+  attr_accessible :branch_id, :sha
+
   def good?
     build_count = branch.builds.count
     return false unless build_results.count == build_count
@@ -11,4 +13,5 @@ class Revision < ActiveRecord::Base
 
     true
   end
+
 end
