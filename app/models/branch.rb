@@ -6,9 +6,12 @@ class Branch < ActiveRecord::Base
 
   def last_good_revision
     revs = []
+    build_ids = builds.collect(&:id)
+
     revisions.each do |rev|
-      next unless rev.build_results.count == builds.count
-       revs << rev if rev.good?
+      revision_builds = rev.build_results.collect(&:build_id)
+      next unless revision_builds.sort == build_ids.sort
+      revs << rev if rev.good?
     end
 
     if revs.first
