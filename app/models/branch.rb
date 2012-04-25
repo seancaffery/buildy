@@ -1,6 +1,6 @@
 class Branch < ActiveRecord::Base
   has_many :builds
-  has_many :revisions, :order => :created_at
+  has_many :revisions, :order => 'created_at DESC'
 
   attr_accessible :name
 
@@ -11,8 +11,8 @@ class Branch < ActiveRecord::Base
        revs << rev if rev.good?
     end
 
-    if revs.last
-      revs.last.revision_id
+    if revs.first
+      revs.first.sha
     end
   end
 end
