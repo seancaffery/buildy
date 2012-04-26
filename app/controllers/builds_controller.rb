@@ -93,12 +93,18 @@ class BuildsController < ApplicationController
 
     branch = Branch.find_or_create_by_name(build_info['branch'].gsub('/', '_'))
     revision = branch.revisions.find_or_create_by_sha(build_info['revision_id'])
-    build = Build.find_or_create_by_name(build_info['build_name'])
+    build = Build.find_by_name(build_info['build_name'])
 
-    build_result = revision.build_results.find_or_create_by_revision_id_and_build_id(revision.id, build.id)
-    build_result.result = build_info['result']
-    build_result.save!
+    if build
+      build_result = revision.build_results.find_or_create_by_revision_id_and_build_id(revision.id, build.id)
+      build_result.result = build_info['result']
+      build_result.save!
+      render :nothing => true
+      return
+    else
+      render :nothing => true, :status => 422
+      return
+    end
 
-    render :nothing => true
   end
 end
