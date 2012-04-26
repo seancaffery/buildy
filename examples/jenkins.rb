@@ -17,7 +17,7 @@ builds.each do |build|
   last_stable_url = build['lastStableBuild']['url']
   build_result = HTTParty.get last_stable_url + 'api/json'
 
-  branch = build_result['actions'][1]['lastBuiltRevision']['branch'].first
+  branch = build_result['actions'].detect{|a| a.has_key?('lastBuiltRevision') }['lastBuiltRevision']['branch'].first
   branch_name = branch['name']
   sha = branch['SHA1']
   result = build_result['result']

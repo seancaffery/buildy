@@ -13,6 +13,7 @@ BuildStatus::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   #
+  match 'update_build' => 'builds#update_build', :via => :post
   resources :branches do
     resources :builds
     resources :revisions
