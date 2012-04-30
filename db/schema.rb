@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424100836) do
+ActiveRecord::Schema.define(:version => 20120430112736) do
 
   create_table "branches", :force => true do |t|
     t.string   "name"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(:version => 20120424100836) do
   create_table "builds", :force => true do |t|
     t.string   "name"
     t.integer  "branch_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "enabled",    :default => false, :null => false
   end
 
   create_table "revisions", :force => true do |t|

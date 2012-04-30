@@ -1,5 +1,5 @@
 class Branch < ActiveRecord::Base
-  has_many :builds
+  has_many :builds, :conditions => {:enabled => true}
   has_many :revisions, :order => 'created_at DESC'
 
   attr_accessible :name
