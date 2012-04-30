@@ -92,7 +92,7 @@ class BuildsController < ApplicationController
     build_info = JSON.parse(params[:payload])
 
     branch = Branch.find_or_create_by_name(build_info['branch'].gsub('/', '_'))
-    build = Build.find_by_name(build_info['build_name'])
+    build = branch.builds.find_by_name(build_info['build_name'])
 
     if build
       revision = branch.revisions.find_or_create_by_sha(build_info['revision_id'])
