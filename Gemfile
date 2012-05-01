@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'rake'
+gem 'capistrano'
 
 group :test do
   gem 'rspec-rails'
