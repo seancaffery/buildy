@@ -10,7 +10,7 @@ class Revision < ActiveRecord::Base
     return false unless branch_build_names.sort == revision_build_names.sort
 
     results = build_results.map(&:result)
-    return false if results.include? 'failed'
+    return false if results.include? 'FAILURE'
 
     true
   end
