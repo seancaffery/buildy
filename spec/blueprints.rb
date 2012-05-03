@@ -6,7 +6,7 @@ Build.blueprint do
 end
 
 Revision.blueprint do
-  sha { Digest::SHA2.new.to_s }
+  sha { Digest::SHA2.new << rand.to_s }
 end
 
 Branch.blueprint do
