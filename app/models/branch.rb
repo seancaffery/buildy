@@ -4,6 +4,10 @@ class Branch < ActiveRecord::Base
 
   attr_accessible :name
 
+  def display_revisions
+    revisions.all(:limit => 10)
+  end
+
   def last_good_revision
     revs = []
     build_ids = builds.collect(&:id)

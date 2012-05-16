@@ -10,7 +10,7 @@
       - else
         No good revision found.
     .revisions
-      - branch.revisions.each do |rev|
+      - branch.display_revisions.each do |rev|
         .revision
           - if rev.good?
             %div{:class => %{good}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
