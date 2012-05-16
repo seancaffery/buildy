@@ -1,9 +1,11 @@
 
 - @branches.each do |branch|
   .branch
-    = branch.name
+    %h3
+      = branch.name
     .last_good
-      Last good revision:
+      %strong
+        Last good revision:
       - last_good = branch.last_good_revision
       - if last_good
         = last_good

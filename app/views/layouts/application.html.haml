@@ -10,5 +10,12 @@
 
     %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
   %body
+    .navbar
+      .navbar-inner
+        .container
+          = link_to 'Buildy', root_url, :class => %{ brand }
+          %ul.nav
+            %li
+              = link_to 'Branches', branches_url
     %div{:class => %w{container}}
       = yield
