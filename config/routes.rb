@@ -14,6 +14,7 @@ BuildStatus::Application.routes.draw do
   #   resources :products
   #
   match 'update_build' => 'builds#update_build', :via => :post
+  match 'branches/:branch_name/last_good_revision' => 'branches#last_good_revision', :via => :get
   resources :branches do
     resources :builds
     resources :revisions

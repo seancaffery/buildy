@@ -82,7 +82,7 @@ class BranchesController < ApplicationController
   end
 
   def last_good_revision
-    @branch = Branch.find params[:id]
-    @branch.last_good_revision
+    @branch = Branch.find_by_name params[:branch_name]
+    render :text => @branch.last_good_revision
   end
 end
