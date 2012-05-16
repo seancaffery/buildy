@@ -23,7 +23,8 @@
               .result
                 = build.name
                 - res = rev.build_results.find_by_build_id(build.id)
-                = res.result if res
-                - unless res
+                - if res
+                  = res.result
+                - else
                   Build information not received
 
