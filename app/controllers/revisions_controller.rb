@@ -69,15 +69,4 @@ class RevisionsController < ApplicationController
     end
   end
 
-  # DELETE /revisions/1
-  # DELETE /revisions/1.json
-  def destroy
-    @revision = Revision.find(params[:id])
-    @revision.destroy
-
-    respond_to do |format|
-      format.html { redirect_to revisions_url }
-      format.json { head :no_content }
-    end
-  end
 end

@@ -69,18 +69,6 @@ class BranchesController < ApplicationController
     end
   end
 
-  # DELETE /branches/1
-  # DELETE /branches/1.json
-  def destroy
-    @branch = Branch.find(params[:id])
-    @branch.destroy
-
-    respond_to do |format|
-      format.html { redirect_to branches_url }
-      format.json { head :no_content }
-    end
-  end
-
   def last_good_revision
     @branch = Branch.find_by_name params[:branch_name]
     render :text => @branch.last_good_revision

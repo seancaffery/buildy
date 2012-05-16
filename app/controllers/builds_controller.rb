@@ -76,18 +76,6 @@ class BuildsController < ApplicationController
     end
   end
 
-  # DELETE /builds/1
-  # DELETE /builds/1.json
-  def destroy
-    @build = Build.find(params[:id])
-    @build.destroy
-
-    respond_to do |format|
-      format.html { redirect_to branch_builds_url }
-      format.json { head :no_content }
-    end
-  end
-
   def update_build
     build_info = JSON.parse(params[:payload])
 
