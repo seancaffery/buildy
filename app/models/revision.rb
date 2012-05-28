@@ -5,14 +5,23 @@ class Revision < ActiveRecord::Base
   attr_accessible :branch_id, :sha
 
   def good?
-    branch_build_names = branch.builds.collect(&:name)
-    revision_build_names = build_results.collect(&:build).collect(&:name)
+    builds = branch.builds(:conditions => { :enabled => true} )
+    branch_build_names = builds.collect(&:name)
+    revisions = results_for(builds)
+    revision_build_names = revisions.collect(&:build).collect(&:name)
+
     return false unless branch_build_names.sort == revision_build_names.sort
 
-    results = build_results.map(&:result)
+    results = revisions.map(&:result)
     return false if results.include? 'FAILURE'
 
     true
+  end
+
+  protected
+
+  def results_for(builds)
+    BuildResult.all(:conditions => {:build_id => builds.map(&:id)})
   end
 
 end
