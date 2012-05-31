@@ -21,7 +21,7 @@ class Revision < ActiveRecord::Base
   protected
 
   def results_for(builds)
-    BuildResult.all(:conditions => {:build_id => builds.map(&:id)})
+    build_results.find(:all, :conditions => {:build_id => builds.map(&:id) })
   end
 
 end
