@@ -10,6 +10,7 @@ class Revision < ActiveRecord::Base
     revisions = results_for(builds)
     revision_build_names = revisions.collect(&:build).collect(&:name)
 
+    return false if builds.empty?
     return false unless branch_build_names.sort == revision_build_names.sort
 
     results = revisions.map(&:result)

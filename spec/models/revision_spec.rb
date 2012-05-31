@@ -40,4 +40,10 @@ describe Revision do
 
     revision.good?.should be_false
   end
+
+  it "marks a revision bad with no builds defined" do
+    revision.stub_chain(:branch, :builds).and_return([])
+    revision.stub(:results_for).and_return([])
+    revision.good?.should be_false
+  end
 end
