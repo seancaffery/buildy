@@ -24,4 +24,6 @@ gem 'capistrano'
 group :test do
   gem 'rspec-rails'
   gem 'machinist'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
