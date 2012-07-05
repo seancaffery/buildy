@@ -23,10 +23,10 @@
           %div{:class => %w{build_results collapse}, :id => rev.id}
             - branch.builds.each do |build|
               .result
-                = build.name
                 - res = rev.build_results.find_by_build_id(build.id)
                 - if res
                   = res.result
                 - else
-                  Build information not received
+                  UNKOWN
+                = build.name
 
