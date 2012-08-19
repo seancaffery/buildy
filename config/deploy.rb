@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 
 set :application, "builds"
-set :repository,  "git@github.com:seancaffery/build-status.git"
+set :repository,  "git@github.com:seancaffery/buildy.git"
 
 set :scm, :git
 
