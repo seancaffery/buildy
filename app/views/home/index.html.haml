@@ -8,18 +8,15 @@
         Last good revision:
       - last_good = branch.last_good_revision
       - if last_good
-        = last_good
+        %span.good
+          = last_good
       - else
         No good revision found.
     .revisions
       - branch.display_revisions.each do |rev|
         .revision
-          - if rev.good?
-            %div{:class => %{good}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
-              = rev.sha
-          - else
-            %div{:class => %{bad}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
-              = rev.sha
+          %div{:class => %{#{rev.status}}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
+            = rev.sha
           %div{:class => %w{build_results collapse}, :id => rev.id}
             - branch.builds.each do |build|
               .result
