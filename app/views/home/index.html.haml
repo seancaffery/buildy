@@ -22,8 +22,8 @@
               .result
                 - res = rev.build_results.find_by_build_id(build.id)
                 - if res
-                  = res.result
+                  %i{:class => res.css_class}
                 - else
-                  UNKOWN
+                  %i{:class => 'icon-question-sign'}
                 = build.name
 
