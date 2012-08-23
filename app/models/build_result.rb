@@ -10,7 +10,7 @@ class BuildResult < ActiveRecord::Base
       'icon-ok'
     when 'FAILURE'
       'icon-remove'
-    when 'UNKNOWN'
+    when 'UNKNOWN', 'ABORTED'
       'icon-question-sign'
     end
   end

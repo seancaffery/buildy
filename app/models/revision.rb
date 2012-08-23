@@ -24,6 +24,7 @@ class Revision < ActiveRecord::Base
     return @status = UNKOWN unless branch_build_names.sort == revision_build_names.sort
 
     results = revisions.map(&:result)
+    return @status = UNKOWN if results.include? 'ABORTED'
     return @status = BAD if results.include? 'FAILURE'
 
     @status = GOOD
