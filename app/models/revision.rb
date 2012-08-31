@@ -6,7 +6,7 @@ class Revision < ActiveRecord::Base
 
   GOOD = 'good'
   BAD = 'bad'
-  UNKOWN = 'unkown'
+  UNKNOWN = 'unknown'
 
   def good?
     status == GOOD
@@ -20,12 +20,12 @@ class Revision < ActiveRecord::Base
     revisions = results_for(builds)
     revision_build_names = revisions.collect(&:build).collect(&:name)
 
-    return @status = UNKOWN if builds.empty?
-    return @status = UNKOWN unless branch_build_names.sort == revision_build_names.sort
-
     results = revisions.map(&:result)
-    return @status = UNKOWN if results.include? 'ABORTED'
     return @status = BAD if results.include? 'FAILURE'
+    return @status = UNKNOWN if results.include? 'ABORTED'
+
+    return @status = UNKNOWN if builds.empty?
+    return @status = UNKNOWN unless branch_build_names.sort == revision_build_names.sort
 
     @status = GOOD
   end
