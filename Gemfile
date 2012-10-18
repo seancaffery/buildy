@@ -21,6 +21,10 @@ gem 'haml-rails'
 gem 'rake'
 gem 'capistrano'
 
+group :development do
+  gem 'pry'
+end
+
 group :test do
   gem 'rspec-rails'
   gem 'machinist'
