@@ -79,20 +79,12 @@ class BuildsController < ApplicationController
   def update_build
     build_info = JSON.parse(params[:payload])
 
-    branch = Branch.find_or_create_by_name(build_info['branch'].gsub('/', '_'))
-    build = branch.builds.find_by_name(build_info['build_name'])
-
-    if build
-      revision = branch.revisions.find_or_create_by_sha(build_info['revision_id'])
-      build_result = revision.build_results.find_or_create_by_revision_id_and_build_id(revision.id, build.id)
-      build_result.result = build_info['result']
-      build_result.save!
+    if BuildUpdater.new.update_with(build_info)
       render :nothing => true
       return
     else
       render :nothing => true, :status => 422
       return
     end
-
   end
 end
