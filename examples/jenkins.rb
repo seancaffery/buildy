@@ -14,7 +14,10 @@ builds.each do |build|
 
   build = HTTParty.get url + "api/json"
 
-  last_stable_url = build['lastBuild']['url']
+  last_build = build['lastBuild']
+  next unless last_build
+
+  last_stable_url = last_build['url']
   build_result = HTTParty.get last_stable_url + 'api/json'
 
   last_build_action = build_result['actions'].detect{|a| a.has_key?('lastBuiltRevision') }
@@ -23,10 +26,12 @@ builds.each do |build|
   branch_name = branch['name']
   sha = branch['SHA1']
   result = build_result['result']
+  duration = build_result['duration']
 
   HTTParty.post(build_status_url,
-                  :body => {:payload => {:branch => branch_name,
-                  :revision_id => sha, :build_name => build_name,
-                  :result => result}.to_json})
+                :body => {:payload => {:branch => branch_name,
+                                       :revision_id => sha, :build_name => build_name,
+                                       :duration => duration,
+                                       :result => result}.to_json})
 end
 
