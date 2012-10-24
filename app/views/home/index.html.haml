@@ -1,4 +1,7 @@
-
+:javascript
+  $(document).ready(function(){
+    $('div[rel="tooltip"]').tooltip({'html': false, 'placement': 'right'});
+  });
 - @branches.each do |branch|
   .branch
     %h3
@@ -12,18 +15,20 @@
           = last_good
       - else
         No good revision found.
-    .revisions
+    .revisions{:style => 'width: 280px'}
       - branch.display_revisions.each do |rev|
         .revision
-          %div{:class => %{#{rev.status}}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse'}
+          %div{:class => %{#{rev.status}}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse', :rel => 'tooltip', :title => "Total build duration: #{rev.display_time}"}
             = rev.sha
           %div{:class => %w{build_results collapse}, :id => rev.id}
             - branch.builds.each do |build|
-              .result
-                - res = rev.build_results.find_by_build_id(build.id)
+              - res = rev.build_results.find_by_build_id(build.id)
+              - duration = res ? res.display_time : 'unkown'
+              .result{:rel => 'tooltip', :title => "Build duration: #{duration}"}
                 - if res
                   %i{:class => res.css_class}
+                  = build.name
                 - else
                   %i{:class => 'icon-question-sign'}
-                = build.name
+                  = build.name
 

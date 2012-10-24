@@ -86,4 +86,21 @@ describe Revision do
     end
 
   end
+
+  describe "#display_time" do
+    it "returns the total time taken building a revsion in words" do
+      revision = Revision.new
+      result_one = revision.build_results.build
+      result_one.build_time = 1 * 60 * 1000
+      result_two = revision.build_results.build
+      result_two.build_time = 2 * 60 * 1000
+      result_three = revision.build_results.build
+      result_three.build_time = 3 * 60 * 1000
+
+      revision.stub_chain(:branch, :builds)
+      revision.stub(:results_for).and_return([result_one, result_two, result_three])
+
+      revision.display_time.should == '6 minutes'
+    end
+  end
 end
