@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018111415) do
+ActiveRecord::Schema.define(:version => 20121126130419) do
 
   create_table "branches", :force => true do |t|
     t.string   "name"
@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(:version => 20121018111415) do
     t.integer  "build_id"
     t.integer  "revision_id"
     t.string   "result"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.decimal  "build_time"
+    t.integer  "timestamp",   :default => 0
   end
 
   create_table "builds", :force => true do |t|
