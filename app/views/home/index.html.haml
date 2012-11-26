@@ -18,7 +18,7 @@
     .revisions{:style => 'width: 280px'}
       - branch.display_revisions.each do |rev|
         .revision
-          %div{:class => %{#{rev.status}}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse', :rel => 'tooltip', :title => "Total build duration: #{rev.display_time}"}
+          %div{:class => %{#{rev.status}}, :'data-target' => "##{rev.id}", :'data-toggle' => 'collapse', :rel => 'tooltip', :title => "Total build duration: #{rev.display_time}\nWall time: #{rev.wall_time}"}
             = rev.sha
           %div{:class => %w{build_results collapse}, :id => rev.id}
             - branch.builds.each do |build|
