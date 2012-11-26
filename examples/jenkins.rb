@@ -27,11 +27,13 @@ builds.each do |build|
   sha = branch['SHA1']
   result = build_result['result']
   duration = build_result['duration']
+  timestamp = build_result['timestamp']
 
   HTTParty.post(build_status_url,
                 :body => {:payload => {:branch => branch_name,
                                        :revision_id => sha, :build_name => build_name,
                                        :duration => duration,
+                                       :timestamp => timestamp,
                                        :result => result}.to_json})
 end
 
