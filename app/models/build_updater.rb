@@ -13,6 +13,7 @@ class BuildUpdater
     build_result = revision.build_results.find_or_create_by_revision_id_and_build_id(revision.id, build.id)
     build_result.result = build_info['result']
     build_result.build_time = build_info['duration']
+    build_result.timestamp = build_info['timestamp']
     build_result.save
   end
 end

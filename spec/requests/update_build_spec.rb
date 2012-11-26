@@ -8,7 +8,7 @@ describe "Update build" do
       branch.builds.create(:name => 'lol')
       build_info = {'branch' => 'master', 'build_name' => 'lol',
                     'revision_id' => 'sha', 'result' => 'SUCCESS',
-                    'duration' => '30000'}
+                    'duration' => '30000', 'timestamp' => '1335880880258'}
 
       post 'update_build', :payload => JSON.dump(build_info)
 
@@ -16,6 +16,7 @@ describe "Update build" do
       result = BuildResult.last
       result.result.should == 'SUCCESS'
       result.build_time.should == 30000
+      result.timestamp.should == 1335880880258
     end
   end
 
