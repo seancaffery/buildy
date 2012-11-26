@@ -32,6 +32,20 @@ class Revision < ActiveRecord::Base
     @status = GOOD
   end
 
+  def wall_time
+    builds = branch.builds(:conditions => { :enabled => true} )
+    results = results_for(builds)
+    return 0 if results.empty?
+    start_time = results.sort_by(&:timestamp).first.timestamp
+    endtime = results.map do |result|
+      result.timestamp + result.build_time
+    end.sort.last
+
+    total_minutes = ((endtime - start_time) / 1000 / 60).to_i
+
+    time_ago_in_words(total_minutes.minutes.ago)
+  end
+
   def display_time
     builds = branch.builds(:conditions => { :enabled => true} )
     results = results_for(builds)
