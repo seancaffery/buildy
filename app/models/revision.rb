@@ -60,7 +60,7 @@ class Revision < ActiveRecord::Base
   protected
 
   def results_for(builds)
-    build_results.find(:all, :conditions => {:build_id => builds.map(&:id) })
+    build_results.where(:build_id => builds.map(&:id))
   end
 
 end
