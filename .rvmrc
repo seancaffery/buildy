@@ -1,1 +1,1 @@
-rvm ree@build_status
+rvm use --create 1.9.3@buildy
