@@ -17,7 +17,7 @@ class Revision < ActiveRecord::Base
   def status
     return @status if @status
 
-    builds = branch.builds(:conditions => { :enabled => true} )
+    builds = branch.builds
     branch_build_names = builds.collect(&:name)
     revisions = results_for(builds)
     revision_build_names = revisions.collect(&:build).collect(&:name)
@@ -33,9 +33,9 @@ class Revision < ActiveRecord::Base
   end
 
   def wall_time
-    builds = branch.builds(:conditions => { :enabled => true} )
-    results = results_for(builds)
+    results = results_for(branch.builds)
     return 0 if results.empty?
+
     start_time = results.sort_by(&:timestamp).first.timestamp
     endtime = results.map do |result|
       result.timestamp + result.build_time
@@ -47,8 +47,7 @@ class Revision < ActiveRecord::Base
   end
 
   def display_time
-    builds = branch.builds(:conditions => { :enabled => true} )
-    results = results_for(builds)
+    results = results_for(branch.builds)
     times_in_minutes = results.map do |result|
       result.build_time.to_i / 1000 / 60
     end
