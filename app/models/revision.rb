@@ -19,10 +19,10 @@ class Revision < ActiveRecord::Base
 
     builds = branch.builds
     branch_build_names = builds.collect(&:name)
-    revisions = results_for(builds)
-    revision_build_names = revisions.collect(&:build).collect(&:name)
+    build_results = results_for(builds)
+    revision_build_names = build_results.collect(&:build).collect(&:name)
 
-    results = revisions.map(&:result)
+    results = build_results.map(&:result)
     return @status = BAD if results.include? 'FAILURE'
     return @status = UNKNOWN if results.include? 'ABORTED'
 
