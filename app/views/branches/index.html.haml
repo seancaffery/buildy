@@ -9,7 +9,10 @@
 
   - @branches.each do |branch|
     %tr
-      %td= branch.name
+      %td
+        = branch.name
+        %br
+        = link_to 'View builds', branch_builds_path(branch)
       %td= link_to 'Show', branch
       %td= link_to 'Edit', edit_branch_path(branch)
       %td= link_to 'Destroy', branch, :confirm => 'Are you sure?', :method => :delete
