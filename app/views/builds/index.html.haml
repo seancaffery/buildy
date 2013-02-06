@@ -4,6 +4,7 @@
   %tr
     %th Name
     %th Branch
+    %th Enabled
     %th
     %th
     %th
@@ -12,6 +13,7 @@
     %tr
       %td= build.name
       %td= build.branch_id
+      %td= build.enabled
       %td= link_to 'Show', branch_build_path(build.branch, build)
       %td= link_to 'Edit', edit_branch_build_path(build.branch, build)
       %td= link_to 'Destroy', [build.branch, build], :confirm => 'Are you sure?', :method => :delete

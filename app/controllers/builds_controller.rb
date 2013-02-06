@@ -68,7 +68,7 @@ class BuildsController < ApplicationController
 
     respond_to do |format|
       if @build.update_attributes(params[:build])
-        format.html { redirect_to @build, :notice => 'Build was successfully updated.' }
+        format.html { redirect_to :action => :index, :notice => 'Build was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
