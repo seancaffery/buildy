@@ -69,6 +69,13 @@ class BranchesController < ApplicationController
     end
   end
 
+  def destroy
+    branch = Branch.find(params[:id])
+    branch.destroy
+
+    redirect_to :action => :index
+  end
+
   def last_good_revision
     @branch = Branch.find_by_name params[:branch_name]
     render :text => @branch.last_good_revision

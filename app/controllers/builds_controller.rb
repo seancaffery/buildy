@@ -76,6 +76,12 @@ class BuildsController < ApplicationController
     end
   end
 
+  def destroy
+    build = Build.find(params[:id])
+    build.destroy
+    redirect_to :action => :index
+  end
+
   def update_build
     build_info = JSON.parse(params[:payload])
 
