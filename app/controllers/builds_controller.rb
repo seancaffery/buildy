@@ -4,7 +4,8 @@ class BuildsController < ApplicationController
   # GET /builds
   # GET /builds.json
   def index
-    @builds = Build.all
+    branch = Branch.find(params[:branch_id])
+    @builds = branch.all_builds
 
     respond_to do |format|
       format.html # index.html.erb
