@@ -85,6 +85,7 @@ GEM
     net-ssh (2.6.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -165,6 +166,7 @@ DEPENDENCIES
   jquery-rails
   json
   machinist
+  pg
   pry
   rails (~> 3.2.3)
   rake
