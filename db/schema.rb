@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126130419) do
+ActiveRecord::Schema.define(:version => 20130208024957) do
 
   create_table "branches", :force => true do |t|
     t.string   "name"
@@ -22,10 +23,10 @@ ActiveRecord::Schema.define(:version => 20121126130419) do
     t.integer  "build_id"
     t.integer  "revision_id"
     t.string   "result"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.decimal  "build_time"
-    t.integer  "timestamp",   :default => 0
+    t.decimal  "timestamp",   :default => 0.0
   end
 
   create_table "builds", :force => true do |t|
