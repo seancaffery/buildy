@@ -4,3 +4,4 @@ log/
 /tmp
 *.swp
 /public/assets/
+config/database.yml
