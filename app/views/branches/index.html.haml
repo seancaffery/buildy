@@ -1,22 +1,17 @@
 %h1 Listing branches
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @branches.each do |branch|
-    %tr
-      %td
-        = branch.name
-        %br
-        = link_to 'View builds', branch_builds_path(branch)
-      %td= link_to 'Show', branch
-      %td= link_to 'Edit', edit_branch_path(branch)
-      %td= link_to 'Destroy', branch, :confirm => 'Are you sure?', :method => :delete
-
+.row
+  .span2
+    %h5 Name
+- @branches.each do |branch|
+  .row
+    .span1
+      = branch.name
+    .span3
+      = link_to 'View builds', branch_builds_path(branch)
+      = link_to 'Show', branch
+      = link_to 'Edit', edit_branch_path(branch)
+      = link_to 'Destroy', branch, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger'
 %br
 
 = link_to 'New Branch', new_branch_path
